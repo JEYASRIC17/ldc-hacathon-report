@@ -1,6 +1,6 @@
 @import "tailwindcss";
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
 }
 nav.sticky {
   top: 0;

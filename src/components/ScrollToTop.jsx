@@ -30,18 +30,19 @@ export default function ScrollToTop() {
 
   return (
 
-    show && (
+    <button
+      onClick={scrollTop}
+      className={`fixed bottom-8 right-8 
+      bg-[#004aad] hover:bg-[#003a8c] 
+      text-white p-3 rounded-full shadow-lg 
+      transition-all duration-500
+      ${show ? "opacity-100 animate-bounce" : "opacity-0 pointer-events-none"}
+      z-50`}
+    >
 
-      <button
-        onClick={scrollTop}
-        className="fixed bottom-8 right-8 bg-sky-600 hover:bg-sky-500 text-white p-3 rounded-full shadow-lg transition z-50"
-      >
+      <ArrowUp size={22} />
 
-        <ArrowUp size={22} />
-
-      </button>
-
-    )
+    </button>
 
   );
 

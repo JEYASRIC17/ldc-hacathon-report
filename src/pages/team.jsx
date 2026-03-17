@@ -1,93 +1,106 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Trophy, Medal, Award, Zap, Star } from "lucide-react";
+import { Zap, Star } from "lucide-react";
 
 export default function Teams() {
   const eliteTeams = [
     {
-      name: "Binary Builders",
-      lead: "Bhuvanesh N",
-      member: "Om Vignesh S",
-      mentor: "Lalitha Mohana R S",
-      points: 2780,
-      tasks: 100,
+      name: "AlgoWarriors",
+      lead: "Mamtha",
+      member: "Jenifer A & C. Madhu Nisha",
+      mentor: "Lady Doak college",
+      points: 95060,
+      tasks: "Rank 2",
       rank: 2,
-      icon: <Award className="w-12 h-12 text-slate-400" />,
       order: "order-2 md:order-1",
+      image: "/gallery/prizes/price2.jpg",
     },
     {
-      name: "Code Queens",
-      lead: "Lakshitha Devi S",
-      member: "Devadharshini G",
-      mentor: "Jothismathi S",
-      points: 2847,
-      tasks: 102,
+      name: "BLOCK BUSTERS",
+      lead: "C.shanmathy",
+      member: "P.LAKSAYA & DHANIN M",
+      mentor: "Lady Doak College",
+      points: 100848,
+      tasks: "Rank 1",
       rank: 1,
-      icon: <Trophy className="w-16 h-16 text-sky-500" />,
       featured: true,
       order: "order-1 md:order-2",
+      image: "/gallery/prizes/price1.jpg",
     },
     {
-      name: "Logic Loop",
-      lead: "Srinidhi K",
-      member: "Rubika M",
-      mentor: "Suvetha S",
-      points: 2705,
-      tasks: 98,
+      name: "InnovateX",
+      lead: "Kaviya K",
+      member: "Rajapriya V A & Preethi",
+      mentor: "Lady Doak College",
+      points: 86313,
+      tasks: "Rank 3",
       rank: 3,
-      icon: <Medal className="w-12 h-12 text-amber-600" />,
       order: "order-3 md:order-3",
+      image: "/gallery/prizes/price3.jpg",
     },
   ];
 
   const teams = [
-    { name: "Alpha Logic", lead: "Shalini S", tasks: 64, points: 1767 },
-    { name: "Runtime Rebels", lead: "Nivesh N S", tasks: 52, points: 1436 },
-    { name: "Coding Beast", lead: "Sivadharshini M", tasks: 50, points: 1378 },
-    { name: "Tech Titans", lead: "Deepasri J P", tasks: 29, points: 779 },
-    { name: "Code Crafters", lead: "Vaishnavi K A", tasks: 28, points: 769 },
-    { name: "MindSpark", lead: "Jerine Priya D", tasks: 26, points: 683 },
-    { name: "Twin Thinkers", lead: "Archana Devi K", tasks: 28, points: 673 },
+    { name: "The Logic Loopers", lead: "GURU DHARSHINI M", tasks: "Rank 4", points: 75582 },
+    { name: "Tech Titans", lead: "Mahmoodha S", tasks: "Rank 5", points: 62505 },
+    { name: "DATANYX", lead: "DEEPIKAA K S", tasks: "Rank 6", points: 54881 },
+    { name: "Infinity-V", lead: "Srilekha K S", tasks: "Rank 7", points: 50434 },
+    { name: "AK07", lead: "Arockia antrina A", tasks: "Rank 8", points: 39140 },
+    { name: "Code Ninjas", lead: "RAMYA P", tasks: "Rank 9", points: 31018 },
+    { name: "Loopers", lead: "S.priyanka", tasks: "Rank 10", points: 20690 },
   ];
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { 
+      opacity: 1, 
+      transition: { staggerChildren: 0.15, delayChildren: 0.3 } 
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, x: -50 },
+    visible: { opacity: 1, x: 0, transition: { type: "spring", stiffness: 120 } }
+  };
 
   return (
     <section id="teams" className="py-24 bg-white text-slate-900 relative overflow-hidden font-sans border-b border-slate-100">
-
-      {/* Background Grid */}
-      <div
-        className="absolute inset-0 opacity-[0.04] pointer-events-none"
-        style={{
-          backgroundImage: `
-            linear-gradient(to right, #0ea5e9 1px, transparent 1px),
-            linear-gradient(to bottom, #0ea5e9 1px, transparent 1px)
-          `,
-          backgroundSize: "32px 32px"
-        }}
+      <div 
+        className="absolute inset-0 opacity-[0.02] pointer-events-none"
+        style={{ 
+          backgroundImage: `linear-gradient(#004aad 1px, transparent 1px), linear-gradient(90deg, #004aad 1px, transparent 1px)`, 
+          backgroundSize: '40px 40px' 
+        }} 
       />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
 
         {/* Header */}
-        <motion.div
+        <motion.div 
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           className="mb-20 text-center md:text-left"
         >
           <div className="flex items-center justify-center md:justify-start gap-2 mb-3">
-            <Star size={14} className="text-sky-500 fill-sky-500" />
-            <h2 className="text-sky-600 uppercase tracking-[0.3em] font-bold text-[11px]">
-              Top Performers
+            <motion.div
+              animate={{ rotate: [0, 15, -15, 0] }}
+              transition={{ repeat: Infinity, duration: 2 }}
+            >
+                <Star size={14} className="text-[#004aad] fill-[#004aad]" />
+            </motion.div>
+            <h2 className="text-[#004aad] uppercase tracking-[0.3em] font-bold text-[11px]">
+              Live Standings
             </h2>
           </div>
-
           <h1 className="text-5xl md:text-6xl font-black tracking-tighter uppercase text-slate-900">
-            Elite <span className="text-sky-500">Squadrons</span>
+            Elite <span className="text-[#004aad]">Squadrons</span>
           </h1>
-
-          <motion.div
+          <motion.div 
             initial={{ width: 0 }}
-            whileInView={{ width: "70px" }}
-            className="h-1.5 bg-sky-500 mt-4 rounded-full shadow-lg shadow-sky-100"
+            whileInView={{ width: "80px" }}
+            transition={{ duration: 1, ease: "easeOut" }}
+            className="h-1.5 bg-[#004aad] mt-4 rounded-full shadow-lg shadow-navy-100"
           />
         </motion.div>
 
@@ -96,122 +109,138 @@ export default function Teams() {
           {eliteTeams.map((team, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 60 }}
               whileInView={{ opacity: 1, y: 0 }}
-              whileHover={{ y: -12, transition: { duration: 0.2 } }}
-              className={`relative flex flex-col items-center p-8 rounded-[40px] w-full md:w-1/3 border transition-all
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: index * 0.2 }}
+              whileHover={{ scale: 1.05, y: team.featured ? -8 : -5 }}
+              className={`relative flex flex-col items-center p-6 rounded-[40px] w-full md:w-1/3 border transition-all
                 ${team.order}
-                ${team.featured
-                  ? "bg-white border-sky-400 min-h-[520px] shadow-[0_20px_60px_rgba(14,165,233,0.15)] z-10"
-                  : "bg-slate-50 border-slate-100 min-h-[440px] shadow-sm"
+                ${team.featured 
+                  ? "bg-white border-[#004aad]/40 min-h-[540px] shadow-[0_25px_60px_rgba(0,74,173,0.15)] z-10" 
+                  : "bg-slate-50/80 backdrop-blur-sm border-slate-100 min-h-[500px] shadow-sm"
                 }`}
             >
+              {team.featured && (
+                <div className="absolute inset-0 rounded-[40px] bg-[#004aad]/5 animate-pulse -z-10" />
+              )}
 
-              <motion.div
-                animate={team.featured ? { y: [0, -8, 0] } : {}}
-                transition={{ duration: 3, repeat: Infinity }}
-                className="mb-6"
-              >
-                {team.icon}
-              </motion.div>
+              {/* Image Rectangle */}
+              {team.image && (
+                <motion.div 
+                  initial={{ scale: 0.9, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ duration: 0.6, delay: index * 0.2 }}
+                  className={`w-full ${team.featured ? "h-64" : "h-56"} mb-6 overflow-hidden rounded-[20px]`}
+                >
+                  <img 
+                    src={team.image} 
+                    alt={`${team.name} Winner`} 
+                    className="w-full h-full object-cover"
+                  />
+                </motion.div>
+              )}
 
               <h2 className="text-3xl font-black text-center mb-2 uppercase tracking-tight leading-tight text-slate-800">
                 {team.name}
               </h2>
-
-              <p className="text-sky-600 text-sm font-bold tracking-widest uppercase mb-6">
-                Mentor: {team.mentor}
+              <p className="text-[#004aad] text-xs font-bold tracking-widest uppercase mb-6 text-center">
+                {team.mentor}
               </p>
 
               <div className="w-full h-[1px] bg-slate-200/50 mb-8" />
 
               <div className="space-y-2 text-center mb-8">
-                <p className="text-slate-500 text-sm font-semibold italic">Lead: {team.lead}</p>
-                <p className="text-slate-400 text-sm italic">Member: {team.member}</p>
+                <p className="text-slate-500 text-sm font-semibold">Lead: {team.lead}</p>
+                <p className="text-slate-400 text-xs italic px-4 leading-relaxed">{team.member}</p>
               </div>
 
               <div className="grid grid-cols-2 gap-4 w-full mt-auto">
-                <div className="text-center bg-white p-4 rounded-3xl border border-slate-100 shadow-sm">
-                  <p className="text-2xl font-black text-sky-600">{team.points}</p>
-                  <p className="text-[9px] uppercase tracking-widest text-slate-400 font-bold">Points</p>
-                </div>
-
-                <div className="text-center bg-white p-4 rounded-3xl border border-slate-100 shadow-sm">
-                  <p className="text-2xl font-black text-sky-600">{team.tasks}</p>
-                  <p className="text-[9px] uppercase tracking-widest text-slate-400 font-bold">Tasks</p>
-                </div>
+                <motion.div 
+                    whileHover={{ scale: 1.05 }}
+                    className="text-center bg-white p-4 rounded-3xl border border-slate-100 shadow-sm"
+                >
+                  <p className="text-xl font-black text-[#004aad]">{team.points.toLocaleString()}</p>
+                  <p className="text-[9px] uppercase tracking-widest text-slate-400 font-bold">PTS</p>
+                </motion.div>
+                <motion.div 
+                    whileHover={{ scale: 1.05 }}
+                    className="text-center bg-white p-4 rounded-3xl border border-slate-100 shadow-sm flex flex-col justify-center"
+                >
+                  <p className="text-xs font-black text-[#004aad] uppercase">{team.tasks}</p>
+                  <p className="text-[9px] uppercase tracking-widest text-slate-400 font-bold">Status</p>
+                </motion.div>
               </div>
-
             </motion.div>
           ))}
         </div>
 
-        {/* LEADERBOARD */}
-        <div className="max-w-5xl mx-auto">
+        {/* LEADERBOARD LIST */}
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="max-w-5xl mx-auto space-y-4"
+        >
+          {/* Leaderboard Heading */}
+          <motion.div 
+            initial={{ opacity: 0, y: -10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="flex items-center gap-4 mb-6"
+          >
+            <h2 className="text-3xl font-black tracking-tight text-slate-800 uppercase">Leaderboard</h2>
+            <motion.div 
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              transition={{ duration: 1 }}
+              className="h-[1px] flex-grow bg-slate-100 origin-left"
+            ></motion.div>
+          </motion.div>
 
-          <div className="flex items-center gap-4 mb-10">
-            <h2 className="text-3xl font-black tracking-tight text-slate-800 uppercase">
-              Leaderboard
-            </h2>
-            <div className="h-[1px] flex-grow bg-slate-100"></div>
-          </div>
+          {teams.map((team, index) => (
+            <motion.div
+              key={index}
+              variants={itemVariants}
+              whileHover={{ scale: 1.03, x: 5, boxShadow: "0 8px 20px rgba(0,0,0,0.12)" }}
+              className="group flex items-center justify-between bg-white px-8 py-5 rounded-2xl border border-slate-100 transition-all cursor-default shadow-sm"
+            >
+              <div className="flex items-center gap-8">
+                <span className="text-xl font-black text-slate-200 group-hover:text-[#004aad]/40 transition-colors w-12">
+                  #{index + 4}
+                </span>
+                <div>
+                  <h3 className="text-lg font-bold text-slate-800 group-hover:text-[#004aad] transition-colors">
+                    {team.name}
+                  </h3>
+                  <p className="text-xs text-slate-500 font-medium">Lead: {team.lead}</p>
+                </div>
+              </div>
 
-          <div className="space-y-4">
-            {teams.sort((a, b) => b.points - a.points).map((team, index) => (
-
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                whileHover={{ scale: 1.01, backgroundColor: "#f8fafc" }}
-                className="group flex items-center justify-between bg-white px-8 py-5 rounded-2xl border border-slate-100 hover:border-sky-300 transition-all cursor-default shadow-sm"
-              >
-
-                <div className="flex items-center gap-8">
-                  <span className="text-2xl font-black text-slate-200 group-hover:text-sky-400 transition-colors w-10">
-                    #{index + 4}
-                  </span>
-
-                  <div>
-                    <h3 className="text-xl font-bold text-slate-800 group-hover:text-sky-600 transition-colors">
-                      {team.name}
-                    </h3>
-                    <p className="text-sm text-slate-500 font-medium">
-                      Lead: {team.lead}
-                    </p>
+              <div className="flex gap-12 text-right">
+                <div className="hidden sm:block">
+                  <p className="text-[9px] uppercase tracking-widest text-slate-400 font-bold mb-1">Position</p>
+                  <div className="flex items-center gap-2 justify-end">
+                     <Zap className="w-3 h-3 text-[#004aad]" />
+                     <span className="font-bold text-slate-700 text-sm uppercase">{team.tasks}</span>
                   </div>
                 </div>
-
-                <div className="flex gap-12 text-right">
-
-                  <div className="hidden sm:block">
-                    <p className="text-xs uppercase tracking-widest text-slate-400 font-bold mb-1">
-                      Tasks
-                    </p>
-
-                    <div className="flex items-center gap-2 justify-end">
-                      <Zap className="w-3 h-3 text-sky-500" />
-                      <span className="font-bold text-slate-700">{team.tasks}</span>
-                    </div>
-                  </div>
-
-                  <div>
-                    <p className="text-xs uppercase tracking-widest text-slate-400 font-bold mb-1">
-                      Total Score
-                    </p>
-                    <p className="text-xl font-black text-sky-600">
+                <div>
+                  <p className="text-[9px] uppercase tracking-widest text-slate-400 font-bold mb-1">Total Score</p>
+                  <motion.p 
+                      initial={{ scale: 1 }}
+                      whileHover={{ scale: 1.1, color: "#003377" }}
+                      className="text-lg font-black text-[#004aad]"
+                  >
                       {team.points.toLocaleString()}
-                    </p>
-                  </div>
-
+                  </motion.p>
                 </div>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
 
-              </motion.div>
-
-            ))}
-          </div>
-
-        </div>
       </div>
     </section>
   );

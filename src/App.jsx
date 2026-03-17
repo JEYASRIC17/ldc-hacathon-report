@@ -5,17 +5,18 @@ import Home from "./pages/home";
 import About from "./pages/About";
 import Teams from "./pages/team";
 import Mentor from "./pages/mentor";
-import Contact from "./pages/contact";
 
-import HackathonStats from "./pages/HackthonStats";
+
+
 import HackathonTimeline from "./pages/HackathonTimeline";
-import EventGallery from "./pages/EventGallery";
+
 
 import EvaluationCriteria from "./pages/Evaluationcriteria";
 import Judges from "./pages/Judges";
-
+import Milestones from "./pages/eventmilstone"
 import EventVideos from "./pages/EventVideos";   
-import ScrollToTop from "./components/ScrollToTop";// ✅ ADDED
+import ScrollToTop from "./components/ScrollToTop";
+import Departments from "./pages/departments"
 
 function App() {
   return (
@@ -41,15 +42,23 @@ function App() {
         <section id="teams">
           <Teams />
         </section>
+        
          <section id="mentor">
           <Mentor />
+        </section>
+         <section id="EvaluationCriteria">
+          <EvaluationCriteria/>
         </section>
          <section id="judges">
           <Judges />
         </section>
-        <section id="contact">
-          <Contact />
+         <section id="department">
+          <Departments/>
         </section>
+        <section id="milestones">
+          <Milestones />
+        </section>
+       
       </main>
 
       <Footer />

@@ -1,153 +1,142 @@
+import React from "react";
 import { motion } from "framer-motion";
+import { FaBullseye, FaUsers, FaGift, FaChartBar } from "react-icons/fa";
+import { FiCode } from "react-icons/fi";
+import { Star } from "lucide-react";
 
 export default function About() {
-  const stats = [
-    { label: "Years of Excellence", value: "75+", color: "text-sky-600", border: "border-sky-100" },
-    { label: "Departments", value: "30+", color: "text-blue-600", border: "border-blue-100" },
-    { label: "Active Students", value: "3000+", color: "text-sky-600", border: "border-sky-100" },
-    { label: "NAAC Grade", value: "A+", color: "text-blue-600", border: "border-blue-100" },
-  ];
-
-  // Animation Variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.2 }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
-  };
-
   return (
-    <section id="about" className="min-h-screen bg-white text-slate-900 py-32 px-6 relative overflow-hidden font-sans">
-      
-      {/* Background Decor: Professional Grid & Soft Glow */}
-      <div className="absolute inset-0 opacity-[0.15] pointer-events-none"
-        style={{ backgroundImage: `radial-gradient(#0ea5e9 1px, transparent 1px)`, backgroundSize: '40px 40px' }} />
-      
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-sky-100/50 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-50/50 blur-[100px] rounded-full translate-y-1/2 -translate-x-1/2 pointer-events-none" />
+    <section
+      id="about"
+      className="relative bg-white text-slate-900 py-24 sm:py-32 overflow-hidden font-sans border-b border-slate-100"
+    >
+      {/* 1. Updated Grid: Now using Dark Navy (#004aad) with very low opacity */}
+      <div
+        className="absolute inset-0 opacity-[0.02] pointer-events-none"
+        style={{
+          backgroundImage: `linear-gradient(#004aad 1px, transparent 1px), linear-gradient(90deg, #004aad 1px, transparent 1px)`,
+          backgroundSize: '50px 50px'
+        }}
+      />
 
-      <div className="max-w-7xl mx-auto relative z-10">
-        
-        {/* HEADER: Clean & Authoritative */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
+      <div className="relative max-w-7xl mx-auto px-6 z-10">
+
+        {/* Label: Accent changed to Dark Navy */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-24"
+          className="flex items-center justify-center md:justify-start gap-2 mb-6"
         >
-          <div className="inline-block px-5 py-2 mb-6 rounded-full bg-sky-50 border border-sky-100 shadow-sm">
-            <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-sky-600">Institutional Profile</span>
-          </div>
-          
-          <h1 className="text-4xl md:text-7xl font-black tracking-tighter leading-none text-slate-800 uppercase">
-            Lady Doak <span className="text-sky-500">College</span>
-          </h1>
-          
-          <motion.div 
-            initial={{ width: 0 }}
-            whileInView={{ width: "128px" }}
-            transition={{ delay: 0.5, duration: 1 }}
-            className="h-1.5 bg-sky-500 mx-auto mt-8 rounded-full shadow-lg shadow-sky-200" 
-          />
+          <Star size={14} className="text-[#004aad] fill-[#004aad]" />
+          <p className="text-[#004aad] uppercase tracking-[0.3em] font-bold text-[11px]">
+            About The Event
+          </p>
         </motion.div>
 
-        {/* MAIN CONTENT: Professional Split */}
-        <div className="grid lg:grid-cols-2 gap-16 items-start mb-24">
-          
-          {/* Left: Narrative Card */}
-          <motion.div 
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="space-y-8"
-          >
-            <div className="bg-white/70 backdrop-blur-xl p-10 rounded-[2.5rem] border border-slate-100 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.05)] relative group">
-              <h2 className="text-2xl font-bold text-slate-800 uppercase tracking-tight mb-4 flex items-center gap-3">
-                <span className="w-8 h-[2px] bg-sky-500"></span>
-                Visionary Excellence
-              </h2>
-              <p className="text-slate-600 leading-relaxed text-lg font-medium">
-                A prestigious autonomous institution committed to academic excellence and leadership development. 
-                Lady Doak College envisions empowering women through transformative education, 
-                fostering innovation, research, and community engagement.
-              </p>
-              {/* Decorative accent */}
-              <div className="absolute -bottom-2 -right-2 w-20 h-20 bg-sky-100/30 blur-2xl rounded-full group-hover:bg-sky-200/50 transition-colors" />
-            </div>
+        {/* Heading: Span changed to Dark Navy */}
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-5xl md:text-6xl font-black tracking-tighter uppercase mb-12 text-slate-900"
+        >
+          What is <span className="text-[#004aad]">NextGen Innovators ?</span>
+        </motion.h2>
 
-            {/* Values: Modern animated pills */}
-            <motion.div 
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="flex flex-wrap gap-3"
-            >
-              {['Excellence', 'Social Responsibility', 'Leadership', 'Innovation'].map((v, i) => (
-                <motion.span 
-                  key={i}
-                  variants={itemVariants}
-                  whileHover={{ scale: 1.05, backgroundColor: "#f0f9ff" }}
-                  className="px-5 py-2.5 bg-white border border-slate-200 rounded-2xl text-[10px] font-extrabold uppercase tracking-[0.15em] text-slate-500 shadow-sm cursor-default"
-                >
-                  {v}
-                </motion.span>
-              ))}
-            </motion.div>
-          </motion.div>
+        {/* Vision Mission */}
+        <div className="relative group mb-12">
+          {/* 2. Glow Animation: Accent changed to Navy blur */}
+          <div className="absolute -inset-1 bg-[#004aad] rounded-[2.5rem] blur-xl opacity-0 group-hover:opacity-10 transition duration-700"></div>
 
-          {/* Right: Stats Grid */}
-          <motion.div 
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="grid grid-cols-2 gap-6"
+            transition={{ duration: 0.5 }}
+            className="relative bg-white/80 backdrop-blur-sm border border-slate-100 rounded-[2.5rem] p-8 sm:p-10 shadow-sm hover:shadow-xl hover:shadow-[#004aad]/5 transition-all duration-500"
           >
-            {stats.map((stat, index) => (
-              <motion.div
-                key={index}
-                variants={itemVariants}
-                whileHover={{ 
-                  y: -10, 
-                  borderColor: "#0ea5e9",
-                  boxShadow: "0 20px 40px -15px rgba(14,165,233,0.15)"
-                }}
-                className={`bg-white p-8 rounded-[2rem] border ${stat.border} shadow-sm group transition-all duration-300`}
-              >
-                <h2 className={`text-5xl font-black tracking-tighter ${stat.color} mb-2`}>
-                  {stat.value}
-                </h2>
-                <p className="text-[10px] uppercase tracking-[0.2em] text-slate-400 font-bold group-hover:text-slate-600 transition-colors">
-                  {stat.label}
-                </p>
-              </motion.div>
-            ))}
+            <h3 className="flex items-center gap-3 text-2xl font-black text-slate-800 uppercase tracking-tight mb-6">
+              <FaBullseye className="text-[#004aad]" />
+              Vision & Mission
+            </h3>
+
+            <p className="text-slate-600 leading-relaxed text-lg max-w-4xl">
+              NextGen Innovators Hackathon 2026 is organized by the Department of Computer Science at Lady Doak College in collaboration with TARCIN Robotics. The event encourages students to build innovative solutions, strengthen coding skills, and collaborate on real-world challenges.
+            </p>
           </motion.div>
         </div>
 
-        {/* BOTTOM ACCENT */}
-        <motion.div 
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 0.6 }}
+        {/* Cards Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+          <FeatureCard
+            icon={<FiCode />}
+            title="Innovation"
+            desc="Students build creative technology solutions using modern programming tools."
+          />
+
+          <FeatureCard
+            icon={<FaUsers />}
+            title="Collaboration"
+            desc="Teams work together to design and develop impactful project ideas."
+          />
+
+          <FeatureCard
+            icon={<FaGift />}
+            title="Recognition"
+            desc="Participants gain mentorship, experience, and awards for top innovations."
+          />
+        </div>
+
+        {/* 3. NAAC / IQAC Section: Palette changed to Navy/Slate */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 1 }}
-          className="border-t border-slate-100 pt-12 text-center"
+          className="relative mt-16 rounded-[2.5rem] p-10 border border-slate-100 bg-slate-50/50 backdrop-blur-sm text-center"
         >
-          <p className="text-[11px] tracking-[0.4em] font-bold text-slate-400 uppercase">
-            Established 1948 • Madurai, India
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#004aad] text-white text-[10px] font-black px-6 py-2 rounded-full uppercase tracking-widest shadow-lg shadow-[#004aad]/20">
+            A++ Accreditation
+          </div>
+
+          <h3 className="flex justify-center items-center gap-2 text-xl font-black text-slate-800 uppercase tracking-tight mb-4">
+            <FaChartBar className="text-[#004aad]" />
+            Impact & Excellence
+          </h3>
+
+          <p className="text-slate-500 max-w-2xl mx-auto leading-relaxed">
+            The hackathon promotes innovation, teamwork, and practical technology skills, supporting the academic excellence and learning initiatives of Lady Doak College.
           </p>
         </motion.div>
 
       </div>
     </section>
+  );
+}
+
+function FeatureCard({ icon, title, desc }) {
+  return (
+    <div className="relative group">
+      {/* 4. Feature Card: Navy Glow on Hover */}
+      <div className="absolute -inset-1 bg-[#004aad] rounded-[2rem] blur-lg opacity-0 group-hover:opacity-5 transition duration-500"></div>
+
+      <motion.div
+        whileHover={{ y: -10 }}
+        className="relative h-full bg-white border border-slate-100 rounded-[2rem] p-8 shadow-sm group-hover:border-[#004aad]/20 transition-all duration-300"
+      >
+        <div className="w-14 h-14 flex items-center justify-center rounded-2xl bg-slate-50 text-[#004aad] text-2xl mb-6 group-hover:bg-[#004aad] group-hover:text-white transition-colors duration-300">
+          {icon}
+        </div>
+
+        <h3 className="text-xl font-black text-slate-800 uppercase tracking-tight mb-3">
+          {title}
+        </h3>
+
+        <p className="text-slate-500 text-sm leading-relaxed">
+          {desc}
+        </p>
+      </motion.div>
+    </div>
   );
 }
