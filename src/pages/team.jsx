@@ -3,6 +3,24 @@ import { motion } from 'framer-motion';
 import { Zap, Star } from "lucide-react";
 
 export default function Teams() {
+
+  const container = {
+    hidden: {},
+    show: { transition: { staggerChildren: 0.08 } }
+  };
+
+  const letter = {
+    hidden: { opacity: 0, y: 50, scale: 0.8 },
+    show: { 
+      opacity: 1, 
+      y: 0, 
+      scale: 1, 
+      transition: { type: "spring", stiffness: 300, damping: 15 }
+    }
+  };
+
+  const title = "ELITE";
+
   const eliteTeams = [
     {
       name: "AlgoWarriors",
@@ -54,7 +72,7 @@ export default function Teams() {
     hidden: { opacity: 0 },
     visible: { 
       opacity: 1, 
-      transition: { staggerChildren: 0.15, delayChildren: 0.3 } 
+      transition: { staggerChildren: 0.15, delayChildren: 0.2 } 
     }
   };
 
@@ -63,8 +81,12 @@ export default function Teams() {
     visible: { opacity: 1, x: 0, transition: { type: "spring", stiffness: 120 } }
   };
 
+  const splitText = (text) => text.split("");
+
   return (
-    <section id="teams" className="py-24 bg-white text-slate-900 relative overflow-hidden font-sans border-b border-slate-100">
+    <section className="py-24 bg-[#eaf4ff] text-slate-900 relative overflow-hidden font-sans">
+
+      {/* GRID BACKGROUND */}
       <div 
         className="absolute inset-0 opacity-[0.02] pointer-events-none"
         style={{ 
@@ -75,11 +97,10 @@ export default function Teams() {
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
 
-        {/* Header */}
+        {/* HEADER */}
         <motion.div 
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
           className="mb-20 text-center md:text-left"
         >
           <div className="flex items-center justify-center md:justify-start gap-2 mb-3">
@@ -87,95 +108,107 @@ export default function Teams() {
               animate={{ rotate: [0, 15, -15, 0] }}
               transition={{ repeat: Infinity, duration: 2 }}
             >
-                <Star size={14} className="text-[#004aad] fill-[#004aad]" />
+              <Star size={14} className="text-[#004aad] fill-[#004aad]" />
             </motion.div>
+
             <h2 className="text-[#004aad] uppercase tracking-[0.3em] font-bold text-[11px]">
               Live Standings
             </h2>
           </div>
-          <h1 className="text-5xl md:text-6xl font-black tracking-tighter uppercase text-slate-900">
-            Elite <span className="text-[#004aad]">Squadrons</span>
-          </h1>
+
+          <motion.h1
+            variants={container}
+            initial="hidden"
+            whileInView="show"
+            className="text-5xl md:text-6xl font-black tracking-tighter uppercase text-slate-900 flex flex-wrap justify-center md:justify-start items-baseline"
+          >
+            {splitText(title).map((char, i) => (
+              <motion.span key={i} variants={letter} className="inline-block">
+                {char === " " ? "\u00A0" : char}
+              </motion.span>
+            ))}
+            <span className="ml-4 text-[#004aad] font-black tracking-tighter flex">
+              {splitText("Squadrons").map((char, i) => (
+                <motion.span key={i} variants={letter}>
+                  {char}
+                </motion.span>
+              ))}
+            </span>
+          </motion.h1>
+
           <motion.div 
             initial={{ width: 0 }}
             whileInView={{ width: "80px" }}
-            transition={{ duration: 1, ease: "easeOut" }}
-            className="h-1.5 bg-[#004aad] mt-4 rounded-full shadow-lg shadow-navy-100"
+            transition={{ duration: 1 }}
+            className="h-1.5 bg-[#004aad] mt-4 rounded-full"
           />
         </motion.div>
 
-        {/* TOP 3 PODIUM */}
-        <div className="flex flex-col md:flex-row items-end justify-center gap-6 lg:gap-8 mb-32">
-          {eliteTeams.map((team, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 60 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
-              whileHover={{ scale: 1.05, y: team.featured ? -8 : -5 }}
-              className={`relative flex flex-col items-center p-6 rounded-[40px] w-full md:w-1/3 border transition-all
-                ${team.order}
-                ${team.featured 
-                  ? "bg-white border-[#004aad]/40 min-h-[540px] shadow-[0_25px_60px_rgba(0,74,173,0.15)] z-10" 
-                  : "bg-slate-50/80 backdrop-blur-sm border-slate-100 min-h-[500px] shadow-sm"
-                }`}
-            >
-              {team.featured && (
-                <div className="absolute inset-0 rounded-[40px] bg-[#004aad]/5 animate-pulse -z-10" />
-              )}
+        {/* ELITE TEAMS CARDS */}
+<div className="flex flex-col md:flex-row items-end justify-center gap-6 lg:gap-8 mb-32">
+  {eliteTeams.map((team, index) => (
+    <motion.div
+      key={index}
+      initial={{ opacity: 0, y: 60 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: index * 0.2 }}
+      whileHover={{ scale: 1.05, y: team.featured ? -8 : -5 }}
+      className={`relative flex flex-col items-center p-6 rounded-[40px] w-full md:w-1/3 transition-all group
+        ${team.order}
+        ${team.featured 
+          ? "bg-white min-h-[540px] shadow-[0_25px_60px_rgba(0,74,173,0.15)] z-10" 
+          : "bg-slate-50/80 backdrop-blur-sm min-h-[500px] shadow-sm"
+        }`}
+    >
+      {team.image && (
+        <motion.div className={`w-full ${team.featured ? "h-64" : "h-56"} mb-6 overflow-hidden rounded-[20px]`}>
+          <img src={team.image} className="w-full h-full object-cover" />
+        </motion.div>
+      )}
 
-              {/* Image Rectangle */}
-              {team.image && (
-                <motion.div 
-                  initial={{ scale: 0.9, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ duration: 0.6, delay: index * 0.2 }}
-                  className={`w-full ${team.featured ? "h-64" : "h-56"} mb-6 overflow-hidden rounded-[20px]`}
-                >
-                  <img 
-                    src={team.image} 
-                    alt={`${team.name} Winner`} 
-                    className="w-full h-full object-cover"
-                  />
-                </motion.div>
-              )}
+      {/* Team Name */}
+      <h2 className={`text-3xl font-black text-center mb-2 uppercase tracking-tight text-slate-800`}>
+        {team.name}
+      </h2>
 
-              <h2 className="text-3xl font-black text-center mb-2 uppercase tracking-tight leading-tight text-slate-800">
-                {team.name}
-              </h2>
-              <p className="text-[#004aad] text-xs font-bold tracking-widest uppercase mb-6 text-center">
-                {team.mentor}
-              </p>
+      {/* Mentor */}
+      <p className="text-[#004aad] text-xs font-bold tracking-widest uppercase mb-6 text-center">
+        {team.mentor}
+      </p>
 
-              <div className="w-full h-[1px] bg-slate-200/50 mb-8" />
+      <div className="w-full h-[1px] bg-slate-200/50 mb-8" />
 
-              <div className="space-y-2 text-center mb-8">
-                <p className="text-slate-500 text-sm font-semibold">Lead: {team.lead}</p>
-                <p className="text-slate-400 text-xs italic px-4 leading-relaxed">{team.member}</p>
-              </div>
+      {/* Lead & Members */}
+      <div className="space-y-2 text-center mb-8">
+        <p className="text-slate-500 text-sm font-semibold">Lead: {team.lead}</p>
+        <p className="text-slate-400 text-xs italic px-4">{team.member}</p>
+      </div>
 
-              <div className="grid grid-cols-2 gap-4 w-full mt-auto">
-                <motion.div 
-                    whileHover={{ scale: 1.05 }}
-                    className="text-center bg-white p-4 rounded-3xl border border-slate-100 shadow-sm"
-                >
-                  <p className="text-xl font-black text-[#004aad]">{team.points.toLocaleString()}</p>
-                  <p className="text-[9px] uppercase tracking-widest text-slate-400 font-bold">PTS</p>
-                </motion.div>
-                <motion.div 
-                    whileHover={{ scale: 1.05 }}
-                    className="text-center bg-white p-4 rounded-3xl border border-slate-100 shadow-sm flex flex-col justify-center"
-                >
-                  <p className="text-xs font-black text-[#004aad] uppercase">{team.tasks}</p>
-                  <p className="text-[9px] uppercase tracking-widest text-slate-400 font-bold">Status</p>
-                </motion.div>
-              </div>
-            </motion.div>
-          ))}
+      {/* Points & Rank */}
+      <div className="grid grid-cols-2 gap-4 w-full mt-auto">
+        {/* Points card stays normal */}
+        <div className="text-center bg-white p-4 rounded-3xl shadow-sm">
+          <p className="text-xl font-black text-[#004aad]">{team.points.toLocaleString()}</p>
+          <p className="text-[9px] uppercase tracking-widest text-slate-400 font-bold">PTS</p>
         </div>
 
-        {/* LEADERBOARD LIST */}
+        {/* Rank card changes blue on hover */}
+       {/* Rank card changes blue on hover for Rank 1,2,3 */}
+<div className={`text-center p-4 rounded-3xl shadow-sm transition-all duration-300 
+    ${team.rank <= 3 ? "bg-white group-hover:bg-[#004aad] group-hover:text-white" : "bg-white"}`}>
+  <p className={`text-xs font-black uppercase ${team.rank <= 3 ? "text-[#004aad] group-hover:text-white" : "text-[#004aad]"}`}>
+    {team.tasks}
+  </p>
+  <p className={`text-[9px] uppercase tracking-widest font-bold ${team.rank <= 3 ? "text-slate-400 group-hover:text-white" : "text-slate-400"}`}>
+    Status
+  </p>
+</div>
+      </div>
+    </motion.div>
+  ))}
+</div>
+
+        {/* LEADERBOARD */}
         <motion.div 
           variants={containerVariants}
           initial="hidden"
@@ -183,7 +216,6 @@ export default function Teams() {
           viewport={{ once: true }}
           className="max-w-5xl mx-auto space-y-4"
         >
-          {/* Leaderboard Heading */}
           <motion.div 
             initial={{ opacity: 0, y: -10 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -191,23 +223,20 @@ export default function Teams() {
             className="flex items-center gap-4 mb-6"
           >
             <h2 className="text-3xl font-black tracking-tight text-slate-800 uppercase">Leaderboard</h2>
-            <motion.div 
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              transition={{ duration: 1 }}
-              className="h-[1px] flex-grow bg-slate-100 origin-left"
-            ></motion.div>
           </motion.div>
 
           {teams.map((team, index) => (
             <motion.div
               key={index}
               variants={itemVariants}
-              whileHover={{ scale: 1.03, x: 5, boxShadow: "0 8px 20px rgba(0,0,0,0.12)" }}
+              whileHover={{ scale: 1.03, x: 5, boxShadow: "0 8px 25px rgba(0,74,173,0.2)" }}
               className="group flex items-center justify-between bg-white px-8 py-5 rounded-2xl border border-slate-100 transition-all cursor-default shadow-sm"
             >
               <div className="flex items-center gap-8">
-                <span className="text-xl font-black text-slate-200 group-hover:text-[#004aad]/40 transition-colors w-12">
+                <span
+                  className={`text-xl font-black w-12 text-slate-200 transition-all duration-300 rounded-full px-2 py-1
+                    group-hover:bg-[#004aad]/20 group-hover:text-[#004aad]`}
+                >
                   #{index + 4}
                 </span>
                 <div>
@@ -222,18 +251,18 @@ export default function Teams() {
                 <div className="hidden sm:block">
                   <p className="text-[9px] uppercase tracking-widest text-slate-400 font-bold mb-1">Position</p>
                   <div className="flex items-center gap-2 justify-end">
-                     <Zap className="w-3 h-3 text-[#004aad]" />
-                     <span className="font-bold text-slate-700 text-sm uppercase">{team.tasks}</span>
+                    <Zap className="w-3 h-3 text-[#004aad]" />
+                    <span className="font-bold text-slate-700 text-sm uppercase">{team.tasks}</span>
                   </div>
                 </div>
                 <div>
                   <p className="text-[9px] uppercase tracking-widest text-slate-400 font-bold mb-1">Total Score</p>
                   <motion.p 
-                      initial={{ scale: 1 }}
-                      whileHover={{ scale: 1.1, color: "#003377" }}
-                      className="text-lg font-black text-[#004aad]"
+                    initial={{ scale: 1 }}
+                    whileHover={{ scale: 1.1, color: "#003377" }}
+                    className="text-lg font-black text-[#004aad]"
                   >
-                      {team.points.toLocaleString()}
+                    {team.points.toLocaleString()}
                   </motion.p>
                 </div>
               </div>

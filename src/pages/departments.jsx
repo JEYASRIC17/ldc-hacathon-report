@@ -3,13 +3,10 @@ import { motion } from "framer-motion";
 import {
   Cpu,
   Globe,
-  Database,
   Shield,
   Rocket,
   GraduationCap,
-  Laptop,
   Code2,
-  Terminal,
   Server,
   Layers
 } from "lucide-react";
@@ -34,17 +31,16 @@ export default function Departments() {
   };
 
   const otherParticipants = [
-    // Updated all colors to bg-[#004aad] for uniformity
-    { name: "Information Technology", icon: Globe, color: "bg-[#004aad]" },
-    { name: "Artificial Intelligence", icon: Cpu, color: "bg-[#004aad]" },
-    { name: "Cyber Security", icon: Shield, color: "bg-[#004aad]" },
-    { name: "Data Analytics", icon: Layers, color: "bg-[#004aad]" }
+    { name: "Information Technology", icon: Globe },
+    { name: "Artificial Intelligence", icon: Cpu },
+    { name: "Cyber Security", icon: Shield },
+    { name: "Data Analytics", icon: Layers }
   ];
 
   return (
-    <section className="py-24 bg-white text-slate-900 relative overflow-hidden font-sans border-b border-slate-100">
-      
-      {/* Signature Grid Background to match Teams/Video sections */}
+     <section className="py-24 text-slate-900 relative overflow-hidden font-sans">
+
+      {/* GRID */}
       <div 
         className="absolute inset-0 opacity-[0.02] pointer-events-none"
         style={{ 
@@ -55,7 +51,7 @@ export default function Departments() {
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
 
-        {/* Header Section */}
+        {/* HEADER */}
         <div className="mb-20">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -68,9 +64,22 @@ export default function Departments() {
             </span>
           </motion.div>
 
-          <h1 className="text-5xl md:text-6xl font-black text-slate-900 tracking-tighter uppercase leading-none">
-            Software <span className="text-[#004aad]">Units</span>
+          <h1 className="text-5xl md:text-6xl font-black text-slate-900 tracking-tight uppercase leading-none flex flex-wrap gap-1">
+            {"Software".split("").map((char, i) => (
+              <motion.span key={i} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }}>
+                {char}
+              </motion.span>
+            ))}
+
+            <span className="text-[#004aad] flex ml-2">
+              {"Units".split("").map((char, i) => (
+                <motion.span key={i} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 + 0.4 }}>
+                  {char}
+                </motion.span>
+              ))}
+            </span>
           </h1>
+
           <motion.div 
             initial={{ width: 0 }}
             whileInView={{ width: "80px" }}
@@ -81,13 +90,12 @@ export default function Departments() {
 
         <div className="grid lg:grid-cols-12 gap-12 items-start">
 
-          {/* Main Department Card */}
+          {/* MAIN CARD */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             className="lg:col-span-7 bg-white rounded-[3rem] p-10 md:p-14 shadow-[0_10px_50px_-15px_rgba(0,0,0,0.05)] border border-slate-100 relative overflow-hidden group"
           >
-            {/* Background Decorative Icon */}
             <div className="absolute top-0 right-0 p-8 opacity-[0.03] group-hover:opacity-[0.08] transition-opacity duration-500">
               <Code2 size={180} className="text-[#004aad]" />
             </div>
@@ -111,27 +119,18 @@ export default function Departments() {
                 {mainDepartment.description}
               </p>
 
-              {/* Stats Grid */}
               <div className="grid grid-cols-3 gap-6 mb-12">
                 {mainDepartment.stats.map((stat, i) => (
-                  <div key={i} className="border-l-2 border-slate-100 pl-5 group-hover:border-[#004aad]/30 transition-colors">
-                    <p className="text-2xl font-black text-slate-800">
-                      {stat.value}
-                    </p>
-                    <p className="text-[10px] uppercase tracking-[0.2em] text-slate-400 font-black">
-                      {stat.label}
-                    </p>
+                  <div key={i} className="border-l-2 border-slate-100 pl-5">
+                    <p className="text-2xl font-black text-slate-800">{stat.value}</p>
+                    <p className="text-[10px] uppercase tracking-[0.2em] text-slate-400 font-black">{stat.label}</p>
                   </div>
                 ))}
               </div>
 
-              {/* Specialization Tags */}
               <div className="flex flex-wrap gap-2">
                 {mainDepartment.specializations.map((spec, i) => (
-                  <span
-                    key={i}
-                    className="px-4 py-2 bg-slate-50 rounded-xl text-slate-600 text-[10px] font-black uppercase tracking-widest border border-slate-100 hover:border-[#004aad]/20 transition-all"
-                  >
+                  <span key={i} className="px-4 py-2 rounded-xl text-slate-600 text-[10px] font-black uppercase tracking-widest border border-slate-100">
                     {spec}
                   </span>
                 ))}
@@ -139,7 +138,7 @@ export default function Departments() {
             </div>
           </motion.div>
 
-          {/* Collaborating Software Departments */}
+          {/* RIGHT SIDE */}
           <div className="lg:col-span-5 space-y-6">
             <h3 className="text-xs font-black text-slate-400 uppercase tracking-[0.4em] mb-8 flex items-center gap-3 pl-2">
               <Rocket className="text-[#004aad]" size={16} />
@@ -156,9 +155,9 @@ export default function Departments() {
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ delay: i * 0.1 }}
                     whileHover={{ x: -10 }}
-                    className="group flex items-center gap-5 p-5 rounded-[2rem] bg-slate-50 border border-slate-100 transition-all cursor-default hover:bg-white hover:shadow-xl hover:shadow-[#004aad]/5 hover:border-[#004aad]/20"
+                    className="group flex items-center gap-5 p-5 rounded-[2rem] bg-white border border-slate-100 hover:bg-white hover:shadow-xl hover:shadow-[#004aad]/5"
                   >
-                    <div className={`${dept.color} p-3 rounded-xl text-white shadow-lg`}>
+                    <div className="bg-[#004aad] p-3 rounded-xl text-white shadow-lg">
                       <Icon size={20} />
                     </div>
                     <div>
@@ -174,10 +173,10 @@ export default function Departments() {
               })}
             </div>
 
-            {/* Sync Card / CTA */}
+            {/* CTA */}
             <motion.div
               whileHover={{ scale: 1.02 }}
-              className="mt-8 bg-[#004aad] rounded-[2.5rem] p-8 text-white relative overflow-hidden group cursor-pointer shadow-2xl shadow-[#004aad]/20"
+              className="mt-8 bg-[#004aad] rounded-[2.5rem] p-8 text-white relative overflow-hidden group shadow-2xl shadow-[#004aad]/20"
             >
               <div className="absolute -bottom-6 -right-6 opacity-10 group-hover:scale-125 transition-transform duration-700">
                 <Server size={140} />
@@ -193,9 +192,12 @@ export default function Departments() {
               
               <div className="mt-6 flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                <span className="text-[10px] uppercase font-black tracking-widest text-blue-200">System Integration Active</span>
+                <span className="text-[10px] uppercase font-black tracking-widest text-blue-200">
+                  System Integration Active
+                </span>
               </div>
             </motion.div>
+
           </div>
         </div>
       </div>
